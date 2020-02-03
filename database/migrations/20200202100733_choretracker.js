@@ -24,10 +24,10 @@ exports.up = function(knex) {
 
     })
     .createTable('family', tbl => {
-        tbl.increments()
+        tbl.increments();
 
         tbl.string('name')
-            .index()
+            .notNullable();
 
         tbl.integer('parent_id')
             .unsigned()
@@ -35,7 +35,7 @@ exports.up = function(knex) {
             .references('id')
             .inTable('parent')
             .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
+            .onUpdate('CASCADE');
         
         tbl.integer('child_id')
             .unsigned()
@@ -43,7 +43,7 @@ exports.up = function(knex) {
             .references('id')
             .inTable('child')
             .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
+            .onUpdate('CASCADE');
     })
 
     .createTable('child', tbl => {
@@ -52,7 +52,7 @@ exports.up = function(knex) {
 
         tbl.string('name')
             .notNullable()
-            .index()
+           
 
         tbl.string('username', 128)
             .notNullable()

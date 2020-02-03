@@ -5,6 +5,7 @@ const Parent = require('../parent/parent-model');
 const Child = require('../child/child-model')
 const jwt = require('jsonwebtoken')
 
+
 //for endpoints beginning with /api/auth
 
 router.post('/register', async (req, res) => {
@@ -94,6 +95,8 @@ router.post('/login/child', (req, res) => {
       res.status(500).json(error);
     });
 });
+
+
 
 function makeToken(user) {
   const payload = {

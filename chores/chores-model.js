@@ -5,7 +5,8 @@ module.exports = {
 addChore,
 getChore,
 findById,
-update
+update,
+remove
 
 }
 //inserting chore into database 
@@ -39,4 +40,9 @@ function findById(id) {
     return db('chore')
       .where('id', Number(id))
       .update(changes);
+  }
+  function remove(id) {
+    return db("chore")
+      .where({ id })
+      .del();
   }
