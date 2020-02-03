@@ -1,6 +1,8 @@
 # Chore Tracker team
 
-## Endpoints
+## All Endpoints should include this :
+
+-- https://chore-tracker1.herokuapp.com
 
 
 
