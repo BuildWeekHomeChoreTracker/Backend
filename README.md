@@ -51,7 +51,10 @@
    |   chore_id    |  Required   |
    
 
-    | Method        | EndPoint           | 
+  ### EndPoint :
+
+
+| Method        | EndPoint              | 
 | ------------- |:-------------:| 
 | POST      | api/auth/register/child |
 
@@ -140,7 +143,7 @@
 
  
 ## Update/Delete 
- * make a request with the id of the recipe to update or delete recipe.
+
  
  
  
@@ -152,7 +155,7 @@
    
 
 
-### BackEnd Build with Node.js
+### BackEnd Built with Node.js
    ### Libraries:
    * express
    * knex
