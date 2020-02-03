@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const Parent = require('./parent-model');
+const Family = require('./family-model');
 
 const authenticate = require('../auth/authenticateMW');
 
 router.get('/', authenticate, (req, res) => {
-  Parent.find()
+  Family.find()
     .then(parents => {
       res.json(parents);
     })

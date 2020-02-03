@@ -2,27 +2,80 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const { jwtSecret } = require('../config/secrets')
 const Parent = require('../parent/parent-model');
+const Child = require('../child/child-model')
 const jwt = require('jsonwebtoken')
 
-// for endpoints beginning with /api/auth
-router.post('/register', (req, res) => {
-  let user = req.body;
-  const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
-  user.password = hash;
+//for endpoints beginning with /api/auth
 
-  Parent.insert(user)
-    .then(saved => {
-      res.status(201).json(saved);
+router.post('/register', async (req, res) => {
+ 
+  let {  fname, lname, email, username, password } = req.body
+
+  try {
+    const hash = bcrypt.hashSync(password, 12)
+    password = hash
+    const saved = await Parent.insert({
+      fname,
+      lname,
+      email,
+      username,
+      password
     })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
+    res.status(201).json(saved)
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
+})
+
+router.post('/register/child', async (req, res) => {
+ 
+  let { name, username, password, parent_id, chore_id} = req.body
+
+  try {
+    const hash = bcrypt.hashSync(password, 12)
+    password = hash
+    const save = await Child.insert({  
+      name, 
+      username,
+      password,
+      parent_id,
+      chore_id
+    })
+    res.status(201).json(save)
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
+})
+
+
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
-  Users.findBy({ username })
+  Parent.findBy({ username })
+    .first()
+    .then(user => {
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = makeToken(user)
+
+        res.status(200).json({
+          message: `Welcome ${user.username} you are logged in !`,
+          token,
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid Credentials' });
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json(error);
+    });
+});
+
+router.post('/login/child', (req, res) => {
+  let { username, password } = req.body;
+
+  Child.findBy({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {

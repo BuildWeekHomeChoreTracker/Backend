@@ -8,21 +8,22 @@ module.exports = {
 };
 
 function find() {
-  return db('parent').select('id', 'username');
+  return db('family').select('id', 'username');
 }
 // added for a filter
 function findBy(filter) {
-  return db('parent').where(filter);
+  return db('family').where(filter);
 }
 
 async function insert(user) {
-  const [id] = await db('parent').insert(user);
+  const [id] = await db('family').insert(user);
 
   return findById(id);
 }
 
 function findById(id) {
-  return db('parent')
+  return db('family')
     .where({ id })
     .first();
 }
+

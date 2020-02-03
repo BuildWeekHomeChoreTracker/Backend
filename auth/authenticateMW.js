@@ -16,9 +16,9 @@ module.exports = (req, res, next) => {
           })
 
         } else {
-
-          req.parent =  decodedToken.parent;
-
+         
+          req.user =  decodedToken.user;
+          console.log(decodedToken.user)
           next()
         }
       })
