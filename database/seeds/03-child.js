@@ -7,25 +7,25 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('child').insert([
         {id: 1,
-          name: 'Josh',
+          fstname: 'Josh',
+          lstname: 'Dimmick',
           username: 'joshd',
-          password: '12345',
-          parent_id: null,
-          chore_id: null
+          password: bcrypt.hashSync("test1", 12)
+
           },
         {id: 2, 
-          name: 'Jules jr',
+          fstname: 'Jules jr',
+          lstname: 'Winnfield',
           username: 'boy',
-          password: '54321',
-          parent_id: null,
-          chore_id: null
+          password: bcrypt.hashSync("test2", 12)
+
         },
         {id: 3, 
-          name: 'Vinny',
+          fstname: 'Vinny',
+          lstname: 'Vega',
           username: 'vinnyv',
-          password: '00000',
-          parent_id: null,
-          chore_id: null
+          password: bcrypt.hashSync("test3", 12)
+
         }       
       ]);
     });

@@ -18,10 +18,10 @@ function findBy(filter) {
 async function insert(user) {
 
   const [id] = await db('child').insert(user);
-  return addChildId(id);
+  return addChildId(user.id, id);
 }
-async function addChildId(id) {
-  return await db('family')
+function addChildId(id) {
+  return  db('family')
   .insert({ child_id: id})
 }
 

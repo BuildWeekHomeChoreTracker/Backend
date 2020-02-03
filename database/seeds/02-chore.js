@@ -13,8 +13,8 @@ exports.seed = function(knex) {
           chore_score: 5,
           bonus_pts: null,
           clean_strk: null,
-          photo_obj: null,
-          family_id: null
+          photo_obj: null
+        
         },
         {id: 2, 
           name: 'wash clothes',
@@ -25,8 +25,8 @@ exports.seed = function(knex) {
           chore_score: 5,
           bonus_pts: null,
           clean_strk: null,
-          photo_obj: null,
-          family_id: null
+          photo_obj: null
+         
         },
         {id: 3, 
           name: 'clean room',
@@ -37,8 +37,8 @@ exports.seed = function(knex) {
           chore_score: 5,
           bonus_pts: null,
           clean_strk: null,
-          photo_obj: null,
-          family_id: null
+          photo_obj: null
+         
         }
       ]);
     });

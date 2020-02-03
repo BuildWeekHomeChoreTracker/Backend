@@ -57,7 +57,10 @@ exports.up = function(knex) {
 
         tbl.increments()
 
-        tbl.string('name')
+        tbl.string('fstname')
+            .notNullable()
+
+        tbl.string('lstname')
             .notNullable()
            
 

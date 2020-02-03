@@ -30,8 +30,8 @@
    
    | field        | metadata           | 
    | -------------|:-------------:| 
-   |   firstname    |  Required   |
-   |   lastname    |  Required   |
+   |   fname    |  Required   |
+   |   lname    |  Required   |
    |    email       |  Required and Unique |
    |  username   | Required and Unique
    |   password    |  Required   |
@@ -44,11 +44,11 @@
    
    | field        | metadata           | 
    | -------------|:-------------:| 
-   |   name    |  Required   |
+   |   fstname    |  Required   |
+   |   lstname    |  Required   |
    |   username    |  Required   |
    |   password    |  Required   |
-   |   parent_id   |  Required   |
-   |   chore_id    |  Required   |
+
    
 
   ### EndPoint :
@@ -126,7 +126,6 @@
    |   bonus_pts    |       |
    |   clean_strk  |        |
    |   photo_obj   |      |
-   |   family_id   |       |
    
    #### Family Object :
 
@@ -137,7 +136,7 @@
    |   name        |  Required   |
    |   parent_id    |  Required   |
    |   child_id     |  Required   |
-  
+   |   chore_id     |  Required   |
 
 
 
