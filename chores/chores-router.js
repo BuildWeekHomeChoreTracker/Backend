@@ -5,7 +5,7 @@ const Chores = require('./chores-model');
 const authenticate = require('../auth/authenticateMW')
 
 
-router.get('/',  (req, res) => {
+router.get('/', authenticate, (req, res) => {
   Chores.getChore()
     .then(chore => {
       res.json(chore);

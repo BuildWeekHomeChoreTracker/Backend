@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 
 
 //for endpoints beginning with /api/auth
-
+// register  Parent
 router.post('/register', async (req, res) => {
  
   let {  fname, lname, email, username, password } = req.body
@@ -22,15 +22,17 @@ router.post('/register', async (req, res) => {
       username,
       password
     })
+    
     res.status(201).json(saved)
   } catch (err) {
     res.status(500).json(err.message)
   }
 })
 
+//reigster the child
 router.post('/register/child', async (req, res) => {
  
-  let { name, username, password, parent_id, chore_id} = req.body
+  let { name, username, password, } = req.body
 
   try {
     const hash = bcrypt.hashSync(password, 12)
@@ -38,17 +40,18 @@ router.post('/register/child', async (req, res) => {
     const save = await Child.insert({  
       name, 
       username,
-      password,
-      parent_id,
-      chore_id
+      password
+      
     })
+
     res.status(201).json(save)
+
   } catch (err) {
     res.status(500).json(err.message)
   }
 })
 
-
+// login for the parent
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
@@ -72,6 +75,8 @@ router.post('/login', (req, res) => {
       res.status(500).json(error);
     });
 });
+
+// login for the child
 
 router.post('/login/child', (req, res) => {
   let { username, password } = req.body;

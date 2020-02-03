@@ -10,20 +10,27 @@ remove
 
 }
 //inserting chore into database 
-// function addChore(chore) {
+
+// function addChore(child, chore_id) {
 //     return db('chore')
-//         .insert(chore)
-//         .then(ids => {
-//             return findById(ids[0])
+//         .insert(child, chore_id)
+//         .then(([id]) => {
+//             return db('chore')
+//                 .where({ id })
 //         })
         
-// }
+//}
 
 async function addChore(user) {
     const [id] = await db('chore').insert(user);
   
-    return findById(id);
+    return addChild(user.chore_id, id);
   }
+async function addChild(chore_id, id) {
+    return db('child')
+    .insert({ chore_id: id })
+}
+
 
 // grab all resources in table
 function getChore(){

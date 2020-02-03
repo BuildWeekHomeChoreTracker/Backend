@@ -14,12 +14,19 @@ function find() {
 function findBy(filter) {
   return db('parent').where(filter);
 }
-
+//adds family when parent sign ups
 async function insert(user) {
-  const [id] = await db('parent').insert(user);
 
-  return findById(id);
+  const [id] = await db('parent').insert(user); 
+  return addFamily(user.lname, id);
 }
+
+function addFamily(lname, id) {
+  return db('family')
+  .insert({ parent_id: id, name: lname })
+}
+
+
 
 function findById(id) {
   return db('parent')

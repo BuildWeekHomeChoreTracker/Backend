@@ -14,11 +14,15 @@ function find() {
 function findBy(filter) {
   return db('child').where(filter);
 }
-
+// adding a child and adding the id to the child_id in familly
 async function insert(user) {
-  const [id] = await db('child').insert(user);
 
-  return findById(id);
+  const [id] = await db('child').insert(user);
+  return addChildId(id);
+}
+async function addChildId(id) {
+  return await db('family')
+  .insert({ child_id: id})
 }
 
 function findById(id) {

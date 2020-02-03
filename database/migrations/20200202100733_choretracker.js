@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema
-    
+ //Parent table   
     .createTable('parent', tbl => {
         tbl.increments()
 
@@ -23,6 +23,7 @@ exports.up = function(knex) {
         .notNullable()
 
     })
+// family table
     .createTable('family', tbl => {
         tbl.increments();
 
@@ -39,13 +40,19 @@ exports.up = function(knex) {
         
         tbl.integer('child_id')
             .unsigned()
-            .notNullable()
             .references('id')
             .inTable('child')
             .onDelete('RESTRICT')
             .onUpdate('CASCADE');
-    })
 
+        tbl.integer('chore_id')
+            .unsigned()
+            .references('id')
+            .inTable('chore')
+            .onDelete('RESTRICT')
+            .onUpdate('CASCADE');
+    })
+// child table
     .createTable('child', tbl => {
 
         tbl.increments()
@@ -61,22 +68,9 @@ exports.up = function(knex) {
         tbl.string('password', 128)
             .notNullable()
         
-        tbl.integer('parent_id')
-            .unsigned()
-            
-            .references('id')
-            .inTable('parent')
-            .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
         
-        tbl.integer('chore_id')
-            .unsigned()
-            .references('id')
-            .inTable('chore')
-            .onDelete('RESTRICT')
-            .onUpdate('CASCADE')
     })
-
+// Chore Table
     .createTable('chore', tbl => {
 
         tbl.increments()
@@ -94,7 +88,6 @@ exports.up = function(knex) {
 
         tbl.date('due_date')
             
-
         tbl.integer('chore_score')
             .notNullable()
 
@@ -104,13 +97,7 @@ exports.up = function(knex) {
 
         tbl.string('photo_obj')
 
-        tbl.integer('family_id')
-            .unsigned()
-            
-            .references('id')
-            .inTable('family')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE')
+
 
     })
 
@@ -121,7 +108,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
           .dropTableIfExists('chore')
-          .dropTableIfExists('child')
           .dropTableIfExists('family')
+          .dropTableIfExists('child')
           .dropTableIfExists('parent')
 };
