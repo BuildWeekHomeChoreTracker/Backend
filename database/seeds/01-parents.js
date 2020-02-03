@@ -11,21 +11,21 @@ exports.seed = function(knex) {
           lname: 'Dimmick',
           email: 'jimmyd@test.com',
           username: 'hideout',
-          password: 'coffee'          
+          password: bcrypt.hashSync("gourmetcafe", 12)          
           },
         {id: 2,
           fname: 'Jules',
           lname: 'Winnfield',
           email: 'badmthrfkr@test.com',
           username: 'jules',
-          password: 'badmofo'
+          password: bcrypt.hashSync("badmofo", 12)
           },
         {id: 3,
           fname: 'Vincent',
           lname: 'Vega',
           email: 'heroin@test.com',
           username: 'gunman',
-          password: 'shootem'
+          password: bcrypt.hashSync("junkie", 12)
           }
       
       ]);
