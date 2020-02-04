@@ -11,7 +11,7 @@ module.exports = {
   update,
   remove
 };
-
+// returns all child details
 async function get() {
   return await db('child as c')
     .select("c.fstname", "c.lstname", "c.username")
@@ -24,7 +24,8 @@ function find() {
 function findBy(filter) {
   return db('child').where(filter);
 }
-// adding a child and adding the id to the child_id in familly
+
+// adding a child
 async function insert(user) {
   
   const [id] = await db('child').insert(user);
@@ -53,13 +54,13 @@ function getChild(id) {
 }
 
 function update(changes, id) {
-  return db('chore')
+  return db('child')
     .where('id', Number(id))
     .update(changes);
 }
 
 function remove(id) {
-  return db("chore")
+  return db("child")
     .where({ id })
     .del();
 }

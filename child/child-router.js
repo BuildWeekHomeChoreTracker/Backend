@@ -66,7 +66,7 @@ router.delete('/:id', (req, res) => {
   const { id } = req.params;
   console.log(id);
 
-  Chores.remove(id)
+  Child.remove(id)
   .then(deleted => {
       console.log(deleted)
       if (deleted) {
