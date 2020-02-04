@@ -1,7 +1,7 @@
 const db = require("../database/dbConfig")
 
 module.exports = {
-addChore,
+//addChore,
 insert,
 getChore,
 findById,
@@ -9,7 +9,7 @@ update,
 remove
 
 }
-// adding a chore 
+//adding a chore 
 async function insert(chores) {
   return db('chore')
     .insert(chores)
@@ -20,20 +20,20 @@ async function insert(chores) {
   }
 
 
-function addChore(choreData, id) {
-  const newChore = {...choreData, chore_id: id }
-    return db('chore')
-    .insert(newChore)
-    .then(() => {
-      return getChore(id)
-    })
-}
+
+
+// function addChore(choreData, id) {
+//   const newChore = {...choreData, chore_id: id }
+//     return db('chore')
+//     .insert(newChore)
+//     .then(() => {
+//       return getChore(id)
+//     })
+// }
 
 
 // grab all resources in table
-function getChore(){
-    return db('chore')
-}
+
 
 function findById(id) {
     return db('chore')

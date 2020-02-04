@@ -21,51 +21,9 @@ exports.up = function(knex) {
 
         tbl.string("password", 128).notNullable();
       })
-      ///child_chore table
 
-      .createTable("child_chore", tbl => {
-        tbl.increments();
 
-        tbl
-          .integer("child_id")
-          .unsigned()
-          .references("id")
-          .inTable("child")
-          .onDelete("RESTRICT")
-          .onUpdate("CASCADE");
 
-        tbl
-          .integer("chore_id")
-          .unsigned()
-          .references("id")
-          .inTable("chore")
-          .onDelete("RESTRICT")
-          .onUpdate("CASCADE");
-
-        tbl
-          .integer("family_id")
-          .unsigned()
-          .references("id")
-          .inTable("family")
-          .onDelete("RESTRICT")
-          .onUpdate("CASCADE");
-      })
-      /////family table
-
-      .createTable("family", tbl => {
-        tbl.increments();
-
-        tbl.string("name").notNullable();
-
-        tbl
-          .integer("parent_id")
-          .unsigned()
-          .notNullable()
-          .references("id")
-          .inTable("parent")
-          .onDelete("RESTRICT")
-          .onUpdate("CASCADE");
-      })
       /////child table
       .createTable("child", tbl => {
         tbl.increments();
@@ -79,8 +37,18 @@ exports.up = function(knex) {
           .notNullable()
           .unique();
 
-        tbl.string("password", 128).notNullable();
+        tbl.string("password", 128).notNullable()
+
+        tbl
+        .integer("parent_id")
+        .unsigned()
+        .references("id")
+        .inTable("parent")
+        .onDelete("RESTRICT")
+        .onUpdate("CASCADE");
+
       })
+
 
       ////chore table
 
@@ -95,7 +63,7 @@ exports.up = function(knex) {
 
         tbl.string("comments", 255);
 
-        tbl.boolean("Completed")
+        tbl.boolean("completed")
         .defaultTo(false);
 
         tbl.date("due_date");
@@ -108,6 +76,23 @@ exports.up = function(knex) {
         tbl.integer("clean_strk");
 
         tbl.string("photo_obj");
+
+        tbl
+        .integer("child_id")
+        .unsigned()
+        .references("id")
+        .inTable("child")
+        .onDelete("RESTRICT")
+        .onUpdate("CASCADE");
+
+        tbl
+        .integer("parent_id")
+        .unsigned()
+        .references("id")
+        .inTable("parent")
+        .onDelete("RESTRICT")
+        .onUpdate("CASCADE");
+
       })
   );
 };
@@ -116,7 +101,6 @@ exports.down = function(knex) {
   return knex.schema
         .dropTableIfExists("chore")
         .dropTableIfExists("child")
-        .dropTableIfExists("family")
-        .dropTableIfExists("child_chore")
         .dropTableIfExists("parent")
+   
 };

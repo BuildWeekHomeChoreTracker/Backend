@@ -16,14 +16,14 @@ exports.seed = function(knex) {
         {id: 2,
           fname: 'Jules',
           lname: 'Winnfield',
-          email: 'badmthrfkr@test.com',
+          email: 'badmthr@test.com',
           username: 'jules',
           password: bcrypt.hashSync("badmofo", 12)
           },
         {id: 3,
           fname: 'Vincent',
           lname: 'Vega',
-          email: 'heroin@test.com',
+          email: 'uzi@test.com',
           username: 'gunman',
           password: bcrypt.hashSync("junkie", 12)
           },

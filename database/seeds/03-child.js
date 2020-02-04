@@ -10,28 +10,32 @@ exports.seed = function(knex) {
           fstname: 'Josh',
           lstname: 'Dimmick',
           username: 'joshd',
-          password: bcrypt.hashSync("test1", 12)
+          password: bcrypt.hashSync("test1", 12),
+          parent_id: 1
 
           },
         {id: 2, 
           fstname: 'Jules jr',
           lstname: 'Winnfield',
           username: 'myboy',
-          password: bcrypt.hashSync("test2", 12)
+          password: bcrypt.hashSync("test2", 12),
+          parent_id: 2
 
         },
         {id: 3, 
           fstname: 'Vinny',
           lstname: 'Vega',
           username: 'vinnyv',
-          password: bcrypt.hashSync("test3", 12)
+          password: bcrypt.hashSync("test3", 12),
+          parent_id: 3
 
         },
         {id: 4, 
           fstname: 'test5',
           lstname: 'test6',
           username: 'test7',
-          password: bcrypt.hashSync("test8", 12)
+          password: bcrypt.hashSync("test8", 12),
+          parent_id: 4
 
         }       
       ]);

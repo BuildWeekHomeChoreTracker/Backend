@@ -18,13 +18,13 @@ function findBy(filter) {
 async function insert(user) {
 
   const [id] = await db('parent').insert(user); 
-  return addFamily(user.lname, id);
+  return findById(id);
 }
 
-function addFamily(lname, id) {
-  return db('family')
-  .insert({ parent_id: id, name: lname })
-}
+// function addFamily(lname, id) {
+//   return db('family')
+//   .insert({ parent_id: id, name: lname })
+// }
 
 
 

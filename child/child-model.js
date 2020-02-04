@@ -5,10 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  addChildId,
-  addChore,
   getChoreById,
-  getChore
+  getChild
 };
 
 function find() {
@@ -22,20 +20,7 @@ function findBy(filter) {
 async function insert(user) {
   
   const [id] = await db('child').insert(user);
-  return addChildId(id);
-}
-function addChildId(id) {
-   return db('child_chore')
-      .insert({ child_id: id }) 
-}
-
-function addChore(choreData, id) {
-  const newChore = {...choreData, chore_id: id }
-    return db('chore')
-    .insert(newChore)
-    .then(() => {
-      return getChore(id)
-    })
+  return findById(id);
 }
 
 function findById(id) {
@@ -45,11 +30,11 @@ function findById(id) {
 }
 
 function getChoreById(id) {
-  return db('child_chore as c')
+  return db('chore as c')
     .where('c.child_id', id)
 }
 
-function getChore(id) {
+function getChild(id) {
   return db('chore as c')
     .join('child as chd', 'chd.id', 'c.child_id')
     .select('c.name as chore_name', 'c.id as chore_id', 'c.description', 'c.comments', 'c.Completed','c.due_date', 'c.chore_score', 'c.bonus_pts', 'c.clean_strk', 'c.photo_obj',)
