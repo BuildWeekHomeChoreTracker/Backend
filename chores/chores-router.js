@@ -6,7 +6,7 @@ const authenticate = require('../auth/authenticateMW');
 
 
 router.get('/', authenticate, (req, res) => {
-  Chores.getChore()
+  Chores.get()
     .then(chore => {
       res.json(chore);
     })
@@ -53,7 +53,7 @@ router.get('/', authenticate, (req, res) => {
 
 //middle ware to just let parent post
 //regular add chore
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
   
   Chores.insert(req.body)
  

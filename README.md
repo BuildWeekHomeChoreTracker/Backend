@@ -48,6 +48,7 @@
    |   lstname    |  Required   |
    |   username    |  Required   |
    |   password    |  Required   |
+    |   parent_id    |  Required   |
 
    
 
@@ -126,17 +127,14 @@
    |   bonus_pts    |       |
    |   clean_strk  |        |
    |   photo_obj   |      |
+   |   child_id   |  Required     |
+   |   parent_id   |  Required    |
    
    #### Family Object :
 
 
    
-   | field        | metadata          | 
-   | -------------|:-------------:| 
-   |   name        |  Required   |
-   |   parent_id    |  Required   |
-   |   child_id     |  Required   |
-   |   chore_id     |  Required   |
+
 
 
 

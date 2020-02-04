@@ -1,7 +1,7 @@
 const db = require("../database/dbConfig")
 
 module.exports = {
-//addChore,
+get,
 insert,
 getChore,
 findById,
@@ -9,6 +9,10 @@ update,
 remove
 
 }
+async function get() {
+  return await db('chore')
+}
+
 //adding a chore 
 async function insert(chores) {
   return db('chore')
