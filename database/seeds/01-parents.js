@@ -26,7 +26,14 @@ exports.seed = function(knex) {
           email: 'heroin@test.com',
           username: 'gunman',
           password: bcrypt.hashSync("junkie", 12)
-          }
+          },
+          {id: 4,
+            fname: 'test1',
+            lname: 'test2',
+            email: 'test3@test.com',
+            username: 'test4',
+            password: bcrypt.hashSync("test5", 12)
+            }
       
       ]);
     });

@@ -39,6 +39,18 @@ exports.seed = function(knex) {
           clean_strk: null,
           photo_obj: null
          
+        },
+        {id: 4, 
+          name: 'test chore',
+          description: 'test,test,test',
+          comments: null,
+          completed: false,
+          due_date: null,
+          chore_score: 5,
+          bonus_pts: null,
+          clean_strk: null,
+          photo_obj: null
+         
         }
       ]);
     });

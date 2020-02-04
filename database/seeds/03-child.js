@@ -26,6 +26,13 @@ exports.seed = function(knex) {
           username: 'vinnyv',
           password: bcrypt.hashSync("test3", 12)
 
+        },
+        {id: 4, 
+          fstname: 'test5',
+          lstname: 'test6',
+          username: 'test7',
+          password: bcrypt.hashSync("test8", 12)
+
         }       
       ]);
     });
