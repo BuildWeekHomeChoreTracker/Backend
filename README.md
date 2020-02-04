@@ -48,7 +48,7 @@
    |   lstname    |  Required   |
    |   username    |  Required   |
    |   password    |  Required   |
-    |   parent_id    |  Required   |
+   |   parent_id   |  Required   |
 
    
 
@@ -130,7 +130,7 @@
    |   child_id   |  Required     |
    |   parent_id   |  Required    |
    
-   #### Family Object :
+  
 
 
    
