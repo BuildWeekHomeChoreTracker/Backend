@@ -110,6 +110,7 @@
  | -------------|:-------------:| ----------|
  | GET         |  api/chore |  get all chores
  | GET         |  api/auth/child/:id  | gets chores for child by id
+ | GET         |  api/auth/child  | gets details for children
  | POST         |  api/chore|  add new chore
  
   
@@ -149,7 +150,7 @@
  Method        |       EndPoint | Description
  | -------------|:-------------:| ----------|
  | PUT         |  api/chore/:id|  Update chore
-  | DELETE         |  api/chore/:id|   Delete recipe
+  | DELETE         |  api/chore/:id|   Delete chore
 
    
 

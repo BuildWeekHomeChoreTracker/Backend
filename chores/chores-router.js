@@ -12,47 +12,7 @@ router.get('/', authenticate, (req, res) => {
     })
     .catch(err => res.send(err));
 });
-//taking a chore and adding a child
 
-// router.post('/', (req, res) => {
-//   const choreData = req.body;
-
-//   Chores.insert(choreData)
-//   .then(chores => {
-//         res.status(201).json(chores);
-//     })
-    
-//   .catch (err => {
-//     console.log(err)
-//     res.status(500).json({ message: 'Failed to create new chore' });
-//   });
-// });
-
-// router.post('/register', authenticate, async (req, res) => {
-  
-//   // const [id] = await db('chore').insert(chores);
-//   // return findById(id);
-
-//  let {  name, description, comments, completed, due_date, chore_score, bonus_pts, clean_strk, photo_obj, child_id, parent_id } = req.body
-
-//  try {
-
-//    const saved = await Chores.insert({
-//     name, description, comments, completed, due_date, chore_score, bonus_pts, clean_strk, photo_obj, child_id, parent_id
-//    })
-   
-//    res.status(201).json(saved)
-//  } catch (err) {
-//    res.status(500).json(err.message)
-//  }
-// }) 
-//   const [id] = await db('chore').insert(chores);
-//   return findById(id);
-//  }
-
-
-//middle ware to just let parent post
-//regular add chore
 router.post('/', authenticate, (req, res) => {
   
   Chores.insert(req.body)

@@ -7,11 +7,14 @@ module.exports = {
   findById,
   getChoreById,
   getChild,
-  get
+  get,
+  update,
+  remove
 };
 
 async function get() {
-  return await db('child')
+  return await db('child as c')
+    .select("c.fstname", "c.lstname", "c.username")
 }
 
 function find() {
@@ -47,4 +50,16 @@ function getChild(id) {
     'chr.clean_strk', 'chr.photo_obj', 'child_id', 'parent_id')
     .where('chr.child_id', id)
     .orderBy('chr.id');
+}
+
+function update(changes, id) {
+  return db('chore')
+    .where('id', Number(id))
+    .update(changes);
+}
+
+function remove(id) {
+  return db("chore")
+    .where({ id })
+    .del();
 }
