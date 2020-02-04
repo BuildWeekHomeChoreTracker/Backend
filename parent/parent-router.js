@@ -11,6 +11,36 @@ router.get('/', authenticate, (req, res) => {
     })
     .catch(err => res.send(err));
 });
+//return an array of children by parent id
+
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  Parent.findById(id)
+  .then(parent => {
+    if (parent) {
+      Parent.getChildById(id) // if child is found then get chore by id
+        .then(child => {
+          let addChild = []
+          if(child.length) {
+            addChild = child // if chore exists add it to array
+          }
+          res.json({ ...parent[0], child: addChild })
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(500).json({ message: 'Failed at nested chore' });
+        });
+    } else {
+      res.status(404).json({ message: 'Could not get chore for child' })
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({ message: 'Failed to get chore' });
+  });
+});
+
 
 router.put('/:id', (req, res) => {
   const { id } = req.params;
@@ -37,7 +67,7 @@ router.delete('/:id', (req, res) => {
   const { id } = req.params;
   console.log(id);
 
-  Chores.remove(id)
+  Parent.remove(id)
   .then(deleted => {
       console.log(deleted)
       if (deleted) {

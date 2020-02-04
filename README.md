@@ -111,6 +111,7 @@
  | GET         |  api/chore |  get all chores
  | GET         |  api/auth/child/:id  | gets chores for child by id
  | GET         |  api/auth/child  | gets details for children
+ | GET         |  api/auth/parent/:id | gets children for parent id 
  | POST         |  api/chore|  add new chore
  
   
@@ -149,10 +150,30 @@
  
  Method        |       EndPoint | Description
  | -------------|:-------------:| ----------|
- | PUT         |  api/chore/:id|  Update chore
-  | DELETE         |  api/chore/:id|   Delete chore
+ | PUT         |  api/chore/:id |  Update chore
+ | DELETE         |  api/chore/:id |   Delete chore
+ | PUT         |  api/auth/child/:id |  Update child
+ | DELETE         |  api/auth/child/:id |   Delete child
+ | PUT         |  api/auth/parent/:id |  Update parent
+ | DELETE         |  api/auth/parent/:id |   Delete parent
 
+  ### Seeded Database users for tests:
+  
+  
+  | Child Users       | Child Passwords   | 
+   | -------------|:-------------:| 
+   |  joshd       | test1     |
+   |   myboy       |  test2  |
+   |  vinnyv     |   test3        |
+   |   test7      |   test8     |
+   | -------------|:-------------:| 
+   |   Parents    |  Passwords       |
+   | -------------|:-------------:| 
+   |   hideout    |   gourmetcafe  |
+   |   jules    |   badmofo    |
+   |   gunman  |  junkie      |
    
+  
 
 
 ### BackEnd Built with Node.js

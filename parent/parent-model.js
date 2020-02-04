@@ -6,7 +6,9 @@ module.exports = {
   findBy,
   findById,
   remove, 
-  update
+  update,
+  getParent,
+  getChildById
 };
 
 function find() {
@@ -40,4 +42,18 @@ function remove(id) {
   return db("parent")
     .where({ id })
     .del();
+}
+
+function getChildById(id) {
+  return db('child as c')
+    .where('c.parent_id', id)
+}
+
+function getParent(id) {
+  return db('child as c')
+    .join('parent as p', 'p.id', 'c.parent_id')
+    .select('p.name as parent_name', 'c.id as child_id', 'c.fstname', 
+    'c.lstname', 'c.username' )
+    .where('c.parent_id', id)
+    .orderBy('c.id')
 }

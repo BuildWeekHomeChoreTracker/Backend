@@ -32,7 +32,7 @@ router.post('/register', async (req, res) => {
 //reigster the child
 router.post('/register/child', async (req, res) => {
  
-  let { fstname, lstname, username, password, } = req.body
+  let { fstname, lstname, username, password, parent_id } = req.body
 
   try {
     const hash = bcrypt.hashSync(password, 12)
@@ -41,7 +41,8 @@ router.post('/register/child', async (req, res) => {
       fstname,
       lstname, 
       username,
-      password
+      password,
+      parent_id
       
     })
 

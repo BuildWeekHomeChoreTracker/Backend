@@ -13,7 +13,7 @@ router.get("/", authenticate, (req, res) => {
 });
 // get child by id and chores by child_id
 
-
+// return an array of chores by child id
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
