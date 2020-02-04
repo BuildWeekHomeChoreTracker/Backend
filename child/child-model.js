@@ -6,8 +6,13 @@ module.exports = {
   findBy,
   findById,
   getChoreById,
-  getChild
+  getChild,
+  get
 };
+
+async function get() {
+  return await db('child')
+}
 
 function find() {
   return db('child').select('id', 'username');
@@ -35,9 +40,11 @@ function getChoreById(id) {
 }
 
 function getChild(id) {
-  return db('chore as c')
-    .join('child as chd', 'chd.id', 'c.child_id')
-    .select('c.name as chore_name', 'c.id as chore_id', 'c.description', 'c.comments', 'c.Completed','c.due_date', 'c.chore_score', 'c.bonus_pts', 'c.clean_strk', 'c.photo_obj',)
-    .where('c.chore_id', id)
-    .orderBy('c.id');
+  return db('chore as chr')
+    .join('child as chd', 'chd.id', 'chr.child_id')
+    .select('chd.name as child_name', 'chr.id as chore_id', 'chr.description', 
+    'chr.comments', 'chr.Completed','chr.due_date', 'chr.chore_score', 'chr.bonus_pts', 
+    'chr.clean_strk', 'chr.photo_obj', 'child_id', 'parent_id')
+    .where('chr.child_id', id)
+    .orderBy('chr.id');
 }

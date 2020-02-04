@@ -109,7 +109,9 @@
   Method        |       EndPoint | Description
  | -------------|:-------------:| ----------|
  | GET         |  api/chore |  get all chores
-  | POST         |  api/chore|  add new chore
+ | GET         |  api/auth/child/:id  | gets chores for child by id
+ | POST         |  api/chore|  add new chore
+ 
   
   
   
