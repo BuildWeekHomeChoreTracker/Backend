@@ -1,34 +1,32 @@
 const db = require("../database/dbConfig")
 
 module.exports = {
-
 addChore,
+insert,
 getChore,
 findById,
 update,
 remove
 
 }
-//inserting chore into database 
-
-// function addChore(child, chore_id) {
-//     return db('chore')
-//         .insert(child, chore_id)
-//         .then(([id]) => {
-//             return db('chore')
-//                 .where({ id })
-//         })
-        
-//}
-
-async function addChore(user) {
-    const [id] = await db('chore').insert(user);
-  
-    return addChild(user.chore_id, id);
+// adding a chore 
+async function insert(chores) {
+  return db('chore')
+    .insert(chores)
+    .then(ids => {
+      return findById(ids[0])
+    })
+    
   }
-async function addChild(chore_id, id) {
-    return db('child')
-    .insert({ chore_id: id })
+
+
+function addChore(choreData, id) {
+  const newChore = {...choreData, chore_id: id }
+    return db('chore')
+    .insert(newChore)
+    .then(() => {
+      return getChore(id)
+    })
 }
 
 
@@ -53,3 +51,10 @@ function findById(id) {
       .where({ id })
       .del();
   }
+  function getChore(id) {
+  return db('chore as c')
+    .join('child as chd', 'chd.id', 'c.child_id')
+    .select('c.name as chore_name', 'c.id as chore_id', 'c.description', 'c.comments', 'c.Completed','c.due_date', 'c.chore_score', 'c.bonus_pts', 'c.clean_strk', 'c.photo_obj',)
+    .where('c.chore_id', id)
+    .orderBy('c.id');
+}

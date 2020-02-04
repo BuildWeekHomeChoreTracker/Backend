@@ -12,13 +12,30 @@ router.get('/', authenticate, (req, res) => {
     })
     .catch(err => res.send(err));
 });
+//taking a chore and adding a child
 
-router.post('/',  (req, res) => {
-  let chores = req.body;
-  Chores.addChore(chores)
-    .then(saved => {
-      
+// router.post('/', (req, res) => {
+//   const choreData = req.body;
+
+//   Chores.insert(choreData)
+//   .then(chores => {
+//         res.status(201).json(chores);
+//     })
+    
+//   .catch (err => {
+//     console.log(err)
+//     res.status(500).json({ message: 'Failed to create new chore' });
+//   });
+// });
+
+
+//regular add chore
+router.post('/', authenticate, (req, res) => {
+ 
+  Chores.insert(req.body)
+    .then(saved => {    
       res.status(201).json(saved);
+
     })
     .catch(error => {
       res.status(500).json(error);

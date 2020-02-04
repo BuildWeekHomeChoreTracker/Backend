@@ -87,17 +87,21 @@ exports.up = function(knex) {
       .createTable("chore", tbl => {
         tbl.increments();
 
-        tbl.string("name", 128).notNullable();
+        tbl.string("name", 128)
+        .notNullable();
 
-        tbl.string("description", 500).notNullable();
+        tbl.string("description", 500)
+        .notNullable();
 
         tbl.string("comments", 255);
 
-        tbl.boolean("Completed").defaultTo(false);
+        tbl.boolean("Completed")
+        .defaultTo(false);
 
         tbl.date("due_date");
 
-        tbl.integer("chore_score").notNullable();
+        tbl.integer("chore_score")
+        .notNullable();
 
         tbl.integer("bonus_pts");
 
