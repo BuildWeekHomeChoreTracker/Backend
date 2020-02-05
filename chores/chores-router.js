@@ -28,7 +28,7 @@ router.post('/', authenticate, (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 

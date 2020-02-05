@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
 // login for the child
 
 router.post('/login/child', (req, res) => {
-  let { username, password } = req.body;
+  let { username, password, id } = req.body;
 
   Child.findBy({ username })
     .first()
@@ -90,7 +90,7 @@ router.post('/login/child', (req, res) => {
         const token = makeToken(user)
 
         res.status(200).json({
-          message: `Welcome ${user.id} ${user.username} you are logged in !`,
+          message: `Hello ${user.username} here's your Id: ${user.id} `,
           token,
         });
       } else {
