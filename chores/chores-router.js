@@ -4,6 +4,7 @@ const Chores = require('./chores-model');
 
 const authenticate = require('../auth/authenticateMW');
 
+// get all chores in database
 
 router.get('/', authenticate, (req, res) => {
   Chores.get()
@@ -12,6 +13,8 @@ router.get('/', authenticate, (req, res) => {
     })
     .catch(err => res.send(err));
 });
+
+// add a post to the database
 
 router.post('/', authenticate, (req, res) => {
   
@@ -27,6 +30,8 @@ router.post('/', authenticate, (req, res) => {
       console.log(error)
     });
 });
+
+// edit chores by id
 
 router.put('/:id', authenticate, (req, res) => {
   const { id } = req.params;
@@ -48,7 +53,9 @@ router.put('/:id', authenticate, (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+// delete a chore by id
+
+router.delete('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   console.log(id);
 

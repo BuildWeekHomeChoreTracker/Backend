@@ -32,17 +32,18 @@ async function insert(user) {
   return findById(id);
 }
 
+//find child by id
 function findById(id) {
   return db('child')
     .where({ id })
     .first();
 }
-
+// get childs chores
 function getChoreById(id) {
   return db('chore as c')
     .where('c.child_id', id)
 }
-
+// return chores by child id
 function getChild(id) {
   return db('chore as chr')
     .join('child as chd', 'chd.id', 'chr.child_id')
@@ -52,13 +53,13 @@ function getChild(id) {
     .where('chr.child_id', id)
     .orderBy('chr.id');
 }
-
+// edit a child
 function update(changes, id) {
   return db('child')
     .where('id', Number(id))
     .update(changes);
 }
-
+// delete a child
 function remove(id) {
   return db("child")
     .where({ id })

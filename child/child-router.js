@@ -15,7 +15,7 @@ router.get("/", authenticate, (req, res) => {
 
 // return an array of chores by child id
 
-router.get('/:id',  (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const { id } = req.params;
 
   Child.findById(id)
@@ -42,7 +42,7 @@ router.get('/:id',  (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   console.log(id);
 

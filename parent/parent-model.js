@@ -11,6 +11,8 @@ module.exports = {
   getChildById
 };
 
+// get parent by id and username
+
 function find() {
   return db('parent').select('id', 'username');
 }
@@ -19,12 +21,15 @@ function findBy(filter) {
   return db('parent').where(filter);
 }
 
+//add a parent
+
 async function insert(user) {
 
   const [id] = await db('parent').insert(user); 
   return findById(id);
 }
 
+// find parent by id
 
 function findById(id) {
   return db('parent')
@@ -32,8 +37,11 @@ function findById(id) {
     .first();
 }
 
+// edit parent
+
 function update(changes, id) {
-  return db('parent')
+  return db('parent as p')
+    .select('p.fname', 'p.lname', 'p.email')
     .where('id', Number(id))
     .update(changes);
 }

@@ -13,7 +13,7 @@ router.get('/', authenticate, (req, res) => {
 });
 //return an array of children by parent id
 
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticate, (req, res) => {
   const { id } = req.params;
 
   Parent.findById(id)
@@ -25,24 +25,25 @@ router.get('/:id', (req, res) => {
           if(child.length) {
             addChild = child // if chore exists add it to array
           }
-          res.json({ ...parent[0], child: addChild })
+          res.json({ ...parent[0], child: addChild }) // return array of parents children
         })
         .catch(err => {
           console.log(err)
-          res.status(500).json({ message: 'Failed at nested chore' });
+          res.status(500).json({ message: 'Failed at finding any children for parent' });
         });
     } else {
-      res.status(404).json({ message: 'Could not get chore for child' })
+      res.status(404).json({ message: 'Could not find children for this parent' })
     }
   })
   .catch(err => {
     console.log(err)
-    res.status(500).json({ message: 'Failed to get chore' });
+    res.status(500).json({ message: 'Failed to get children' });
   });
 });
 
+// edit parents info
 
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -63,7 +64,9 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+// delete a parent
+
+router.delete('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   console.log(id);
 

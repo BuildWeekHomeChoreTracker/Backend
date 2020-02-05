@@ -103,7 +103,7 @@
  ### must LogIn and have a token to make these requests:
  
  
- * make a request with the id of the user to get all the Chores of the Parent and add Child.
+ 
  
  
   Method        |       EndPoint | Description
@@ -166,7 +166,8 @@
    |   myboy       |  test2  |
    |  vinnyv     |   test3        |
    |   test7      |   test8     |
-   | -------------|:-------------:| 
+
+
    |   Parents    |  Passwords       |
    | -------------|:-------------:| 
    |   hideout    |   gourmetcafe  |
