@@ -90,7 +90,7 @@ router.post('/login/child', (req, res) => {
         const token = makeToken(user)
 
         res.status(200).json({
-          message: `Hello ${user.username} here's your Id: ${user.id} `,
+          message: `${user.id}`,
           token,
         });
       } else {
