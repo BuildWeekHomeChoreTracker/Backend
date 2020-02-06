@@ -110,8 +110,9 @@
  | -------------|:-------------:| ----------|
  | GET         |  api/chore |  get all chores
  | GET         |  api/auth/child/:id  | gets chores for child by id
- | GET         |  api/auth/child  | gets details for children
+ | GET         |  api/auth/child/justchild/:id  | gets details for child by id
  | GET         |  api/auth/parent/:id | gets children for parent id 
+  | GET         |  api/auth/parent/justparent/:id | gets parent details by id
  | POST         |  api/chore|  add new chore
  
   

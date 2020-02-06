@@ -5,13 +5,21 @@ module.exports = {
   find,
   findBy,
   findById,
+  get,
   remove, 
   update,
   getParent,
   getChildById
 };
 
-// get parent by id and username
+// get parent by id 
+
+async function get(id) {
+  return await db('parent as p')
+    .select("p.id", "p.fname", "p.lname", "p.email", "p.username")
+    .where({ id })
+    .first();
+}
 
 function find() {
   return db('parent').select('id', 'username');

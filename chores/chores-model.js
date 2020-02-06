@@ -1,12 +1,16 @@
 const db = require("../database/dbConfig")
 
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
 module.exports = {
 get,
 insert,
 getChore,
 findById,
 update,
-remove
+remove,
+
 
 }
 async function get() {
@@ -62,3 +66,10 @@ function findById(id) {
     .where('c.chore_id', id)
     .orderBy('c.id');
 }
+
+// mongoose schema
+
+const postSchema = new Schema({
+  image: String
+})
+const Post = mongoose.model('Post', postSchema)

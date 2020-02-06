@@ -4,8 +4,13 @@ const Child = require("./child-model");
 
 const authenticate = require("../auth/authenticateMW");
 
-router.get("/", authenticate, (req, res) => {
-  Child.get()
+
+
+router.get("/justchild/:id", authenticate, (req, res) => {
+
+  const { id } = req.params;
+
+  Child.get(id)
     .then(childs => {
       res.json(childs);
     })

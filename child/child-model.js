@@ -12,9 +12,11 @@ module.exports = {
   remove
 };
 // returns all child details
-async function get() {
+async function get(id) {
   return await db('child as c')
-    .select("c.fstname", "c.lstname", "c.username")
+    .select("c.id", "c.parent_id","c.fstname", "c.lstname", "c.username")
+    .where({ id })
+    .first();
 }
 
 function find() {

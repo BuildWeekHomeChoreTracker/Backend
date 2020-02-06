@@ -12,6 +12,12 @@ const choresRouter = require('../chores/chores-router');
 
 const server = express();
 
+const fileupload = require('express-fileupload')
+
+server.use(fileupload({
+  useTempFiles: true
+}))
+
 server.use(helmet());
 server.use(express.json());
 server.use(cors());

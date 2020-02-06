@@ -4,13 +4,20 @@ const Parent = require('./parent-model');
 
 const authenticate = require('../auth/authenticateMW');
 
-router.get('/', authenticate, (req, res) => {
-  Parent.find()
+router.get('/justparent/:id', authenticate, (req, res) => {
+ 
+  const { id } = req.params;
+ 
+  Parent.get(id)
     .then(parents => {
       res.json(parents);
     })
+    
     .catch(err => res.send(err));
+  
 });
+
+
 //return an array of children by parent id
 
 router.get('/:id', authenticate, (req, res) => {
