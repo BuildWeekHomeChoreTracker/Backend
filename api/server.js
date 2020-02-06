@@ -26,7 +26,7 @@ server.use('/api/chore', choresRouter);
 // server check
 
 server.get('/', (req, res) => {
-  res.send("If you see me, I am here...");
+  res.status(200).json({ api: "If you see me, I am here..."});
 });
 
 module.exports = server;

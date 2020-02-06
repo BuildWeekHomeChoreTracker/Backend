@@ -75,7 +75,7 @@ exports.up = function(knex) {
 
         tbl.integer("clean_strk");
 
-        tbl.string("photo_obj");
+        tbl.binary("photo_obj");
 
         tbl
         .integer("child_id")

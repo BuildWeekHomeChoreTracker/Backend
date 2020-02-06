@@ -30,7 +30,7 @@ router.get('/:id', authenticate, (req, res) => {
           res.json({ ...child[0], chore: addChore })
         })
         .catch(err => {
-          res.status(500).json({ message: 'Failed at nested chore' });
+          res.status(500).json({ message: 'Failed getting chore' });
         });
     } else {
       res.status(404).json({ message: 'Could not get chore for child' })
