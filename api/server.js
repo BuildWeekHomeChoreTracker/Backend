@@ -15,19 +15,28 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-server.use(bodyParser.json())
+
 // routes
 
 server.use('/api/auth/parent', parentRouter);
 server.use('/api/auth/child', childRouter);
 server.use('/api/auth/',  authRouter);
 server.use('/api/chore', choresRouter);
-server.use(bodyParser.urlencoded({ extended: false }))
+
+// body parser for IOS image upload
+
+server.use(bodyParser.urlencoded({ 
+
+  parameterLimit: 20000,
+  limit: "20mb",
+  extended: true 
+
+}))
 
 server.use(bodyParser.json({
-  parameterLimit: 125000,
-  limit: '50mb',
-  extended: true
+  
+ limit: '20mb'
+
 }))
 
 // server check
