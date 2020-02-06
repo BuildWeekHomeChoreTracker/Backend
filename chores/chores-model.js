@@ -1,7 +1,5 @@
 const db = require("../database/dbConfig")
 
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
 
 module.exports = {
 get,
@@ -67,9 +65,5 @@ function findById(id) {
     .orderBy('c.id');
 }
 
-// mongoose schema
 
-const postSchema = new Schema({
-  image: String
-})
-const Post = mongoose.model('Post', postSchema)
+

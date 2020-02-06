@@ -4,27 +4,6 @@ const Chores = require('./chores-model');
 
 const authenticate = require('../auth/authenticateMW');
 
-const multipart = require('connect-multiparty')
-
-const multipartMW = multipart()
-
-const cloudinary = require('cloudinary')
-
-const fileupload = require('express-fileupload')
-
-router.use(fileupload({
-  useTempFiles: true
-}))
-
-
-
-
-cloudinary.config({
-  cloud_name: 'mikezs',
-  api_key: '698823118239967',
-  api_secret: 'HmzAmqm5PU1u34rMsmqV7FJ7RaI'
-})
-
 // get all chores in database
 
 router.get('/', authenticate, (req, res) => {
@@ -35,7 +14,7 @@ router.get('/', authenticate, (req, res) => {
     .catch(err => res.send(err));
 });
 
-// add a post to the database
+// add a chore to the database
 
 router.post('/', authenticate, (req, res) => {
   
@@ -54,7 +33,7 @@ router.post('/', authenticate, (req, res) => {
 
 // edit chores by id
 
-router.put('/:id', multipartMW, authenticate, (req, res) => {
+router.put('/:id', authenticate, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -73,48 +52,7 @@ router.put('/:id', multipartMW, authenticate, (req, res) => {
     res.status(500).json({ message: 'Failed to update chore' });
   });
 });
-// image upload 
-router.post('/upload', function(res, req) {
-  
-  const file = req.files
-  console.log(file)
-  // cloudinary.uploader.upload(file.tempFilePath, function(err, result) {
-  //    res.send({
-  //     success: true,
-  //     message: 'file uploaded!'
-  //   })   
-  // })
-
-  // file.mv('./uploads/' + file.name, function(err, result) {
-  //   if(err)
-  //     throw err
-  //   res.send({
-  //     success: true,
-  //     message: 'file uploaded!'
-  //   })
-  // })
-}) 
-
-// router.put('/:id', authenticate, (req, res) => {
-//   const { id } = req.params;
-//   const changes = req.body;
-
-//   Chores.findById(id)
-//   .then(chore => {
-//     if (chore) {
-//       Chores.update(changes, id)
-//       .then(updatedChore => {
-//         res.json(updatedChore);
-//       });
-//     } else {
-//       res.status(404).json({ message: 'Could not find chore with given id' });
-//     }
-//   })
-//   .catch (err => {
-//     res.status(500).json({ message: 'Failed to update chore' });
-//   });
-// });
-
+ 
 // delete a chore by id
 
 router.delete('/:id', authenticate, (req, res) => {
