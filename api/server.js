@@ -24,7 +24,7 @@ server.use('/api/auth/',  authRouter);
 server.use('/api/chore', choresRouter);
 server.use(bodyParser.urlencoded({ extended: false }))
 
-server.use(bodyParser.urlencoded({
+server.use(bodyParser.json({
   parameterLimit: 125000,
   limit: '50mb',
   extended: true
