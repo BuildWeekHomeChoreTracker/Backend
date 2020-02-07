@@ -54,7 +54,7 @@ router.put('/:id', authenticate, (req, res) => {
   Child.findById(id)
   .then(child => {
     if (child) {
-      Chores.update(changes, id)
+      Child.update(changes, id)
       .then(updatedChild => {
         res.json(updatedChild);
       });
